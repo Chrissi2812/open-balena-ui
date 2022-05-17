@@ -27,7 +27,7 @@ export const DeviceLogs = ({basePath, ...props}) => {
     const session = authProvider.getSession();
 
     const handleSubmit = values => {
-        let API_HOST = process.env.REACT_APP_OPEN_BALENA_API_URL;
+        let API_HOST = window.balenaConfig.REACT_APP_OPEN_BALENA_API_URL;
         return fetch(`${API_HOST}/device/v2/${props.record.uuid}/logs`, {
             method: 'GET',
             headers: new Headers({

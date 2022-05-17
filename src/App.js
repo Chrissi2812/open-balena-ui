@@ -46,9 +46,9 @@ const httpClient = (url, options = {}) => {
     return fetchUtils.fetchJson(url, options);
 };
 
-const dataProvider = postgrestDataProvider(process.env.REACT_APP_OPEN_BALENA_POSTGREST_URL, httpClient);
+const dataProvider = postgrestDataProvider(window.balenaConfig.REACT_APP_OPEN_BALENA_POSTGREST_URL, httpClient);
 
-const deviceTypeAliasVer = versions.resource("deviceTypeAlias", process.env.REACT_APP_OPEN_BALENA_API_VERSION);
+const deviceTypeAliasVer = versions.resource("deviceTypeAlias", window.balenaConfig.REACT_APP_OPEN_BALENA_API_VERSION);
 
 const App = () => (
     <BrowserRouter>

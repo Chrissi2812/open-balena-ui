@@ -23,7 +23,7 @@ const DeviceTypeTitle = ({ record }) => {
     return <span>Device Type {record ? `"${record.name}"` : ''}</span>;
 };
 
-const deviceTypeAlias = versions.resource("deviceTypeAlias", process.env.REACT_APP_OPEN_BALENA_API_VERSION);
+const deviceTypeAlias = versions.resource("deviceTypeAlias", window.balenaConfig.REACT_APP_OPEN_BALENA_API_VERSION);
 
 export const DeviceTypeList = props => {
     return (
