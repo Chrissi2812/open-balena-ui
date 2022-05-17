@@ -1,29 +1,13 @@
-FROM debian:bullseye
-
-ARG DEBIAN_FRONTEND=noninteractive
-
-# Update nodejs version to 17.x
-RUN apt-get update && apt-get install -y curl && \
-    curl -sL https://deb.nodesource.com/setup_17.x | bash -
-
-RUN apt-get update && apt-get install -y \
-    nodejs \
-    node-typescript \
-    jq \
-    && rm -rf /var/lib/apt/lists/*
+FROM node:14 as builder
 
 WORKDIR /usr/src/app
 
-COPY ./src ./src
-COPY ./public ./public
-COPY ./craco.config.js ./
-COPY ./package.json ./
-COPY ./package-lock.json ./
-COPY ./yarn.lock ./
+COPY . .
 
-RUN npm install --global yarn && \
-    npm install --no-fund --no-update-notifier
+RUN npm ci
+RUN npm run build
 
-COPY start.sh ./
+### RUN STAGE ###
+FROM lipanski/docker-static-website:latest
 
-CMD ["bash", "start.sh"]
+COPY --from=builder /build .
