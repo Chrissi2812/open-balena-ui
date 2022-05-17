@@ -2,7 +2,7 @@ import jwt_decode from 'jwt-decode';
 
 const authProvider = {
     login: ({ username, password }) => {
-        return fetch(`${process.env.REACT_APP_OPEN_BALENA_API_URL}/login_`, {
+        return fetch(`${window.balenaConfig.REACT_APP_OPEN_BALENA_API_URL}/login_`, {
             method: 'POST',
             body: JSON.stringify({ "username": username, "password": password }),
             headers: new Headers({ 'Content-Type': 'application/json' }),

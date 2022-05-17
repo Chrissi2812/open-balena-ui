@@ -25,7 +25,7 @@ export const DeviceServices = ({basePath, ...props}) => {
 
     const invokeSupervisor = (device, imageInstall, command) => {
         const session = authProvider.getSession();
-        return fetch(`${process.env.REACT_APP_OPEN_BALENA_API_URL}/supervisor/v2/applications/${device['belongs to-application']}/${command}-service`, {
+        return fetch(`${window.balenaConfig.REACT_APP_OPEN_BALENA_API_URL}/supervisor/v2/applications/${device['belongs to-application']}/${command}-service`, {
             method: 'POST',
             body: JSON.stringify({ "uuid": device.uuid, "data": {"imageId": imageInstall['installs-image']} }),
             headers: new Headers({ 

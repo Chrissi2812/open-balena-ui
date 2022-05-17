@@ -1,7 +1,7 @@
 import { useDataProvider } from 'react-admin';
 import versions from '../versions'
 
-const deviceTypeAlias = versions.resource("deviceTypeAlias", process.env.REACT_APP_OPEN_BALENA_API_VERSION);
+const deviceTypeAlias = versions.resource("deviceTypeAlias", window.balenaConfig.REACT_APP_OPEN_BALENA_API_VERSION);
 
 export function useCreateDeviceType () {
 
