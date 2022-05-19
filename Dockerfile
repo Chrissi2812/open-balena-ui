@@ -11,3 +11,6 @@ RUN npm run build
 FROM lipanski/docker-static-website:latest
 
 COPY --from=builder /usr/src/app/build .
+COPY start.sh .
+
+CMD ["bash", "start.sh"]
