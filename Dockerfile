@@ -11,3 +11,5 @@ RUN npm run build
 FROM lipanski/docker-static-website:latest
 
 COPY --from=builder /usr/src/app/build .
+
+CMD ["/thttpd", "-D", "-h", "0.0.0.0", "-p", "80", "-d", "/home/static", "-u", "static", "-l", "-", "-M", "60"]
