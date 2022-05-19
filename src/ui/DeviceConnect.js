@@ -90,7 +90,7 @@ export const DeviceConnect = ({basePath, ...props}) => {
 
     React.useEffect(() => {
         if (!loaded) {
-            let REMOTE_HOST = process.env.REACT_APP_OPEN_BALENA_REMOTE_URL;
+            let REMOTE_HOST = window.balenaConfig.REACT_APP_OPEN_BALENA_REMOTE_URL;
             let session = authProvider.getSession();
             setUsername(session.object.username);
             let containerChoices = [{id: 0, name: 'host'}];
